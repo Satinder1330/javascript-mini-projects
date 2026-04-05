@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <h1>Rock Paper Scissors</h1>
+    <div class="button-div">
+        
+        <button  onclick="
+            let random = Math.random() *3;
+            console.log(random)
+            console.log(final.computerScore)
+           let computerChoice=computer(random);
+            let result;
+            getResult('Rock',computerChoice)
+            console.log(random)"
+            ><img src="images/Rock.png" alt="Rock Image" class="button-images"></button>
+        <button onclick="
+            random = Math.random() *3;
+            console.log(random)
+          computerChoice=computer(random);
+            getResult('Paper',computerChoice)
+            console.log(random)"
+        ><img src="images/Paper.png" alt="paper-image" class="button-images" ></button>
+        <button onclick="
+            random = Math.random() *3;
+            console.log(random)
+           computerChoice=computer(random);
+            getResult('Scissor',computerChoice)
+            console.log(random)"
+        ><img src="images/Scissors.png" alt="Scissor Image" class="button-images"></button>
+        
+    </div>
+     <h3 id="user" ></h3>
+    <h3 id="computer" ></h3>
+    <h3 id="result" ></h3>
+    <button class="bottom-buttons" onclick="
+    output(final.userScore,final.computerScore)
+    score()">Final Score</button>
+    <button class="bottom-buttons" onclick="
+    resetScore()">Reset Score</button>
+    
+
+    
+    <script>
+       function computer(random){ 
+        if(random>0 && random <1){
+                return'Rock'
+            }else if(random>1 && random<2){
+                return'Paper'
+            }else{
+                return'Scissor'
+            }
+        }
+        
+
+      function getResult(userChoice,computerChoice){
+        if(userChoice===computerChoice){
+            result=`It is a Tie`;
+        }else if(userChoice==='Rock' && computerChoice==='Paper'){
+            result='Computer Won!!'
+            final.computerScore +=1;
+        }else if(userChoice==='Rock' && computerChoice==='Scissor'){
+            result='You Won this Game'
+            final.userScore +=1;
+        }else if(userChoice==='Paper' && computerChoice ==='Rock'){
+            result='You Won!!'
+            final.userScore +=1;
+        }else if(userChoice==='Paper' && computerChoice==='Scissor'){
+            result='Computer Won!!'
+          final.computerScore +=1;
+        }else{
+            if(computerChoice==='Rock'){
+            result='Computer Won this time'
+            final.computerScore +=1;
+            }else{
+                result='You won !!'
+                final.userScore +=1;
+            }
+        }
+        
+         document.querySelector("#user").innerText =`You chose ${userChoice}`;
+          document.querySelector("#computer").innerText =`Computer Chose ${computerChoice}`;
+         document.querySelector("#result").innerText =result;
+
+        
+
+      }
+let final={
+    userScore:0,
+    computerScore:0,
+    
+}
+function score(){
+localStorage.setItem('finalScore',JSON.stringify(final));}
+
+function output(userScore,computerChoice){
+    if(final.userScore>final.computerScore){
+    alert( `Congratulations! You Won More Games 
+You Won ${final.userScore} Games and Computer Won ${final.computerScore} Games`)}
+else if(final.userScore===final.computerScore){
+    alert(`It is a Tie! 
+    You Won ${final.userScore} Games and Computer Won ${final.computerScore} Games `)
+}
+else{
+    alert(`Computer Won More Games!  
+    Computer Won ${localStorage.getItem(final.computerScore)} Games and You Won ${localStorage.getItem(final.userScore)} Games`)}
+
+}
+function resetScore(){
+    let data = JSON.parse(localStorage.getItem('FinalScore'));
+    data.userScore=0;
+    data.computerScore=0;
+    localStorage.setItem('finalScore',JSON.stringify(data))
+    document.querySelector("#user").innerText =`Score has been reset`;
+          document.querySelector("#computer").innerText =`Start playing again`;
+         document.querySelector("#result").innerText ='';
+}
+
+
+
+    </script>
+</body>
+</html>

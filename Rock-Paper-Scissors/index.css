@@ -1,0 +1,41 @@
+*{
+    padding: 0;
+    margin: 0;
+text-align: center;
+}
+h1{
+    background-color: aliceblue;
+    height: 100px;
+    align-content: center;
+}
+.button-div{
+background-color: rgb(109, 112, 114);
+height: 150px;
+display: flex;
+flex-wrap: wrap;
+align-content:space-around;
+margin-bottom: 10px;
+}
+button{
+    width: 20%;
+    margin-left: 10%;
+    
+}
+.button-images{
+    height: 90px;
+    width: 100%;
+    border-radius: 25px;
+   
+
+}
+button:hover{
+    cursor: pointer;
+}
+.bottom-buttons{
+    margin-top: 10px;
+    height: 40px;
+    width: 20%;
+}
+h3{
+    font-size: 25px;
+}
